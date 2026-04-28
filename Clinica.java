@@ -1,6 +1,5 @@
 public class Clinica {
 
-    // Nuevo metodo (Commit 2)
     private boolean validarPaciente(String paciente) {
         if (paciente == null || paciente.isEmpty()) {
             System.out.println("ERROR: Paciente no válido");
@@ -9,33 +8,35 @@ public class Clinica {
         return true;
     }
 
-    public void agendarCita(String paciente, String doctor, String fecha, String tipo) {
+    //Nuevo metodo reutilizable(Commit 3)
+    private void registrarAuditoria() {
+        System.out.println("[AUDITORIA] Cambio en sistema realizado el: " + java.time.LocalDate.now());
+    }
 
-        //Validacion sin repeticiones (Commit 2)
+    public void agendarCita(String paciente, String doctor, String fecha, String tipo) {
         if (!validarPaciente(paciente)) return;
 
         System.out.println("Cita agendada para " + paciente + " con el Dr. " + doctor);
 
-        System.out.println("[AUDITORIA] Cambio en sistema realizado el: " + java.time.LocalDate.now());
+        //Metodo reutilizable (Commit 3)
+        registrarAuditoria();
     }
 
     public void cancelarCita(String paciente, String fecha) {
-
-        //Validacion si repeticiones (Commit 2)
         if (!validarPaciente(paciente)) return;
 
         System.out.println("Cita cancelada para " + paciente);
 
-        System.out.println("[AUDITORIA] Cambio en sistema realizado el: " + java.time.LocalDate.now());
+        //Metodo reutilizable (Commit 3)
+        registrarAuditoria();
     }
 
     public void emitirReceta(String paciente, String medicamento) {
-
-        //Validacion si repeticiones (Commit 2)
         if (!validarPaciente(paciente)) return;
 
         System.out.println("Receta de " + medicamento + " para " + paciente);
 
-        System.out.println("[AUDITORIA] Cambio en sistema realizado el: " + java.time.LocalDate.now());
+        //Metodo reutilizable (Commit 3)
+        registrarAuditoria();
     }
 }
